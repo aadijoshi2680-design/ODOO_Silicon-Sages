@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Financial Architect | ExpensePro</title>
+  <meta name="description" content="Corporate Expense Management System - Financial Architect by ExpensePro. Manage expenses, approvals, wallets, and budgets."/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary":"#376479","surface-tint":"#376479","secondary-container":"#e1dfdf",
+            "surface-container-high":"#ede8dd","on-secondary-fixed-variant":"#464747",
+            "on-surface-variant":"#41484c","surface-container-highest":"#e8e2d7",
+            "outline-variant":"#c1c7cc","on-primary":"#ffffff","on-tertiary-container":"#382f20",
+            "background":"#fff9ee","surface-container-low":"#f9f3e8","on-surface":"#1d1c15",
+            "outline":"#71787d","tertiary-fixed":"#f1e0ca","on-secondary":"#ffffff",
+            "on-tertiary-fixed":"#231a0d","on-error-container":"#93000a",
+            "on-primary-fixed":"#001e2b","inverse-on-surface":"#f6f0e5","surface":"#fff9ee",
+            "secondary-fixed":"#e4e2e2","secondary":"#5e5e5e","tertiary-fixed-dim":"#d4c4af",
+            "surface-container-lowest":"#ffffff","secondary-fixed-dim":"#c7c6c6",
+            "error-container":"#ffdad6","on-primary-container":"#003547","on-error":"#ffffff",
+            "surface-dim":"#dfd9cf","surface-bright":"#fff9ee","on-secondary-container":"#636262",
+            "primary-container":"#729eb5","error":"#ba1a1a","primary-fixed":"#c0e8ff",
+            "on-background":"#1d1c15","surface-variant":"#e8e2d7","surface-container":"#f3ede2",
+            "on-primary-fixed-variant":"#1c4c60","inverse-primary":"#a0cde5",
+            "on-tertiary":"#ffffff","on-secondary-fixed":"#1b1c1c",
+            "on-tertiary-fixed-variant":"#504535","inverse-surface":"#333029",
+            "primary-fixed-dim":"#a0cde5","tertiary-container":"#a49683","tertiary":"#695d4b"
+          },
+          fontFamily: {"headline":["Manrope"],"body":["Inter"],"label":["Inter"]},
+          borderRadius: {"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},
+        },
+      },
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="bg-surface font-body text-on-surface">
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- AUTH PAGE -->
+  <div id="page-auth" class="page hidden min-h-screen"></div>
+
+  <!-- APP SHELL -->
+  <div id="app-shell" class="hidden">
+    <aside id="sidebar" class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low flex flex-col py-6 px-4 gap-2 z-50"></aside>
+    <main class="ml-64 min-h-screen flex flex-col">
+      <header id="topnav" class="sticky top-0 z-40 flex items-center justify-between px-8 h-16 w-full bg-surface backdrop-blur-md shadow-[0_12px_32px_-4px_rgba(29,28,21,0.06)]"></header>
+      <div id="page-dashboard" class="page hidden"></div>
+      <div id="page-expenses" class="page hidden"></div>
+      <div id="page-expense-detail" class="page hidden"></div>
+      <div id="page-wallet" class="page hidden"></div>
+      <div id="page-bundles" class="page hidden"></div>
+      <div id="page-approvals" class="page hidden"></div>
+      <div id="page-settings" class="page hidden"></div>
+    </main>
+  </div>
+
+  <!-- SERVICES (must load before app.js and pages) -->
+  <script src="services/auth.js"></script>
+  <script src="services/datastore.js"></script>
+  <script src="services/currency.js"></script>
+  <script src="services/ocr.js"></script>
+
+  <!-- APP CORE -->
+  <script src="app.js"></script>
+</body>
+</html>

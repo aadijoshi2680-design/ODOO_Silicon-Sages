@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Financial Architect | Team Approvals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#376479",
+              "surface-tint": "#376479",
+              "secondary-container": "#e1dfdf",
+              "surface-container-high": "#ede8dd",
+              "on-secondary-fixed-variant": "#464747",
+              "on-surface-variant": "#41484c",
+              "surface-container-highest": "#e8e2d7",
+              "outline-variant": "#c1c7cc",
+              "on-primary": "#ffffff",
+              "on-tertiary-container": "#382f20",
+              "background": "#fff9ee",
+              "surface-container-low": "#f9f3e8",
+              "on-surface": "#1d1c15",
+              "outline": "#71787d",
+              "tertiary-fixed": "#f1e0ca",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#231a0d",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#001e2b",
+              "inverse-on-surface": "#f6f0e5",
+              "surface": "#fff9ee",
+              "secondary-fixed": "#e4e2e2",
+              "secondary": "#5e5e5e",
+              "tertiary-fixed-dim": "#d4c4af",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#c7c6c6",
+              "error-container": "#ffdad6",
+              "on-primary-container": "#003547",
+              "on-error": "#ffffff",
+              "surface-dim": "#dfd9cf",
+              "surface-bright": "#fff9ee",
+              "on-secondary-container": "#636262",
+              "primary-container": "#729eb5",
+              "error": "#ba1a1a",
+              "primary-fixed": "#c0e8ff",
+              "on-background": "#1d1c15",
+              "surface-variant": "#e8e2d7",
+              "surface-container": "#f3ede2",
+              "on-primary-fixed-variant": "#1c4c60",
+              "inverse-primary": "#a0cde5",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#1b1c1c",
+              "on-tertiary-fixed-variant": "#504535",
+              "inverse-surface": "#333029",
+              "primary-fixed-dim": "#a0cde5",
+              "tertiary-container": "#a49683",
+              "tertiary": "#695d4b"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      }
+      .glass-panel {
+        background: rgba(255, 249, 238, 0.8);
+        backdrop-filter: blur(12px);
+      }
+      .primary-gradient {
+        background: linear-gradient(135deg, #376479 0%, #729eb5 100%);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-[#f9f3e8] dark:bg-slate-900 py-6 px-4 gap-2 z-50">
+<div class="mb-8 px-2">
+<h1 class="font-manrope text-xl font-extrabold text-[#376479]">ExpensePro</h1>
+<p class="text-xs text-on-surface-variant opacity-70">Enterprise Tier</p>
+</div>
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#1d1c15] dark:text-slate-400 hover:text-[#376479] hover:bg-[#dfd9cf] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#1d1c15] dark:text-slate-400 hover:text-[#376479] hover:bg-[#dfd9cf] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-inter text-sm font-medium">My Expenses</span>
+</a>
+<!-- ACTIVE STATE: Team Approvals -->
+<a class="flex items-center gap-3 px-3 py-2.5 bg-white dark:bg-slate-800 text-[#376479] font-semibold rounded-lg shadow-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="rule" style="font-variation-settings: 'FILL' 1;">rule</span>
+<span class="font-inter text-sm font-medium">Team Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#1d1c15] dark:text-slate-400 hover:text-[#376479] hover:bg-[#dfd9cf] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-inter text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 border-t border-outline-variant/10 pt-4">
+<button class="mb-4 w-full primary-gradient text-white py-2.5 rounded-lg font-medium shadow-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Expense
+            </button>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1d1c15] opacity-70 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="contact_support">contact_support</span>
+<span class="text-sm">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1d1c15] opacity-70 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+<span class="text-sm">Logout</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="sticky top-0 z-40 flex items-center justify-between px-8 h-16 w-full bg-[#fff9ee] dark:bg-slate-950/80 backdrop-blur-md shadow-[0_12px_32px_-4px_rgba(29,28,21,0.06)]">
+<div class="flex items-center gap-8">
+<span class="font-manrope font-bold text-[#376479] dark:text-[#729EB5] tracking-tight text-lg">Financial Architect</span>
+<div class="hidden md:flex items-center bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant/15">
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64 placeholder:text-on-surface-variant/50" placeholder="Search approvals..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#1d1c15] dark:text-slate-400 hover:bg-[#dfd9cf] dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-[#1d1c15] dark:text-slate-400 hover:bg-[#dfd9cf] dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="h-full w-full object-cover" data-alt="Professional portrait of a middle-aged male executive in a grey suit, soft office lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5AGukOO5M4Acs7HIwMBAUh1bzCANKml2wSlO1KZF2RJPJ8k2iVKZ2yLqXJH55YDAjiNHc4CaH7FkAq135iLRg3WC15inxl9Kqt7oITYsr0oHRQbYmkRwnR0ILehxRMTP1yQNS3e1oEZi6z8dNtdGLwuSM4qfFAafmrROtar00dbS_okWrKIhMtUWnO6BxUs3Dc46IQJGFhpuQsg8m_VlfYgX49QtcKx9MIa2tqa0Im7kNEN6ZNjMD_1badnU_sgdGxjkpSIrftIA"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="p-8 lg:p-12 space-y-8 max-w-7xl mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline text-3xl font-extrabold text-on-surface tracking-tight">Approvals to review</h2>
+<p class="text-on-surface-variant font-body mt-1">Manage and audit pending expense requests from your direct reports.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high text-on-surface rounded-md font-medium text-sm hover:bg-surface-dim transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high text-on-surface rounded-md font-medium text-sm hover:bg-surface-dim transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_-4px_rgba(29,28,21,0.06)] border border-outline-variant/10">
+<p class="text-xs font-bold text-primary-container uppercase tracking-wider mb-2">Pending Count</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-extrabold text-on-surface">12</span>
+<span class="text-sm text-on-surface-variant font-medium">requests</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_-4px_rgba(29,28,21,0.06)] border border-outline-variant/10">
+<p class="text-xs font-bold text-primary-container uppercase tracking-wider mb-2">Pending Total</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-extrabold text-on-surface">₹412,450</span>
+<span class="text-sm text-error font-medium">↑ 12% vs last mo</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_-4px_rgba(29,28,21,0.06)] border border-outline-variant/10">
+<p class="text-xs font-bold text-primary-container uppercase tracking-wider mb-2">Avg. Response Time</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-headline font-extrabold text-on-surface">4.2</span>
+<span class="text-sm text-on-surface-variant font-medium">hours</span>
+</div>
+</div>
+</div>
+<!-- Approvals Table Container -->
+<section class="bg-surface-container-low rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container-high/50 border-b border-outline-variant/15">
+<th class="px-6 py-4 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant">Approval Subject</th>
+<th class="px-6 py-4 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant">Request Owner</th>
+<th class="px-6 py-4 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant">Category</th>
+<th class="px-6 py-4 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant text-center">Request Status</th>
+<th class="px-6 py-4 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant text-right">Total Amount (INR)</th>
+<th class="px-6 py-4 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Pending Row 1 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-dim transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant">
+<span class="material-symbols-outlined" data-icon="flight">flight</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Q3 Client Summit - Airfare</p>
+<p class="text-xs text-on-surface-variant">Invoice #EXP-9921 • Aug 14</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Portrait of a young professional woman smiling, studio lighting, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhx1Aiom9sbujP5K_aonfAWG7mszlypVIu9kI-wN5s-CyAFWAe4CwzeBzkqPBtDNB7bVXAC1BKJiOG50IxucZ2mSPnWBzel477-IVLeh597P9CGGUInf2sioUyar9wckoaeESQ8OfpxLLfszy6VQJ5Aa2HyjVKtmIScXJg4iduuWGl_NMEiHkxbY0k7n8zXGQPuIontHam6JXLiV45ogfyCf53hjdODdJdmOOh-G8FvQ0Nhv751_dh6uLesNhMquBCoUw2UrVxKNE"/>
+</div>
+<span class="text-sm font-medium">Sarah Jenkins</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-[11px] font-bold uppercase">Travel</span>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full text-[11px] font-bold uppercase tracking-tight">Processing</span>
+</td>
+<td class="px-6 py-5 text-right">
+<p class="font-bold text-on-surface">₹86,500</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">$1,042 USD equivalent</p>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="h-8 px-3 bg-error/10 text-error hover:bg-error hover:text-white rounded-md text-xs font-bold transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+                                            Reject
+                                        </button>
+<button class="h-8 px-3 bg-[#2e7d32]/10 text-[#2e7d32] hover:bg-[#2e7d32] hover:text-white rounded-md text-xs font-bold transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="check">check</span>
+                                            Approve
+                                        </button>
+</div>
+</td>
+</tr>
+<!-- Pending Row 2 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-dim transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined" data-icon="laptop_mac">laptop_mac</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Cloud Architecture Suite Sub.</p>
+<p class="text-xs text-on-surface-variant">Invoice #EXP-8842 • Aug 12</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Portrait of a male designer with glasses, warm natural light, blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1xoBXfu4N2tGxr4kd9yuo5AbQNBl97UJrWTQF63Yl_NobkysZFKwzdKHbNuluRpUAfKRErElyZn2QfDkqqEsiTYF-ImvxzFgQF0II9XlKBrGviBnUvzYWgjl24Dm7V1nXYB1iYq18cgaYvcBKUMi7WHUrnX9158J1xItEJi5WKcZl2LhHRvExiOpeHXssu-4Bwb0SyLV4tKJ2wK71zLZKcxDfm6Fj03FkbdU0b8t9eSNo50kqQi_GSoo22Wfs9a5QpoPNPPP-WmY"/>
+</div>
+<span class="text-sm font-medium">David Chen</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-[11px] font-bold uppercase">Software</span>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full text-[11px] font-bold uppercase tracking-tight">Processing</span>
+</td>
+<td class="px-6 py-5 text-right">
+<p class="font-bold text-on-surface">₹49,896</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">$601 USD equivalent</p>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="h-8 px-3 bg-error/10 text-error hover:bg-error hover:text-white rounded-md text-xs font-bold transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+                                            Reject
+                                        </button>
+<button class="h-8 px-3 bg-[#2e7d32]/10 text-[#2e7d32] hover:bg-[#2e7d32] hover:text-white rounded-md text-xs font-bold transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="check">check</span>
+                                            Approve
+                                        </button>
+</div>
+</td>
+</tr>
+<!-- READ ONLY / APPROVED ROW -->
+<tr class="bg-surface-container-low/40 opacity-70">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Client Lunch - Tech Synergy</p>
+<p class="text-xs text-on-surface-variant">Invoice #EXP-8770 • Aug 10</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full overflow-hidden grayscale">
+<img class="h-full w-full object-cover" data-alt="Portrait of a young professional male in a white shirt, clean lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcOfudYoyhSC4EOBd2M8qU1jUcvMxVMooCD-uDdQSQE3eNBa9k960NmdK1gcYYLHVgSAnoYjj56CUza-dqkX_vgXanu0GrpFkmxDNXlM9YjA_taf7Ufs1h2Mgpg7t1QzgOdll28WhW9km-_YTFmDrBzeA-o7-LYmB3wKquwdwjdn8-4WrzyN9QHhCueC-3bJwlBaJaWOUW65MoVDzTVLs3sn-9PX5-dtLQoqo3KfD78L9UnCa4B7nq1cf9eIURORTCKuqznajxveM"/>
+</div>
+<span class="text-sm font-medium">Michael Ross</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-[11px] font-bold uppercase">Meals</span>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="px-3 py-1 bg-[#2e7d32]/20 text-[#2e7d32] rounded-full text-[11px] font-bold uppercase tracking-tight flex items-center justify-center gap-1 mx-auto w-max">
+<span class="material-symbols-outlined text-[12px]" data-icon="done_all">done_all</span>
+                                        Approved
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<p class="font-bold text-on-surface">₹12,450</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">$150 USD equivalent</p>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-xs italic text-on-surface-variant">Read-only</span>
+</td>
+</tr>
+<!-- Pending Row 3 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-dim transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="local_taxi">local_taxi</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Airport Transfer - BLR</p>
+<p class="text-xs text-on-surface-variant">Invoice #EXP-9945 • Aug 15</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="Portrait of a young professional woman smiling, studio lighting, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaBGO3DUTLrIyD3ZI9nRmk7DivkGvZ-cPNMrj5aXlRbHLtXoOH9JkUwbLEA-ysOhYTeUcmWAN26z7m-HPGo1n8-FFGpgZxtzhJNw-CieeNeEwCbn2Cr1Sc879xBBLCIIuBr4WboMGrL-JOkrAGPjDAvTgKntuSu3iioi8_dFbYEcAwE6b7Jxct7XoP1uYZwFDL1BOUoKtjDvTHqIQ-LKzbnirliZ0pz-2p6hbWUfV9tQ3iaFURPJCHeDCrmGqPDf9MKBi9J68BSKI"/>
+</div>
+<span class="text-sm font-medium">Sarah Jenkins</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-[11px] font-bold uppercase">Travel</span>
+</td>
+<td class="px-6 py-5 text-center">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full text-[11px] font-bold uppercase tracking-tight">Processing</span>
+</td>
+<td class="px-6 py-5 text-right">
+<p class="font-bold text-on-surface">₹2,850</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">$34 USD equivalent</p>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="h-8 px-3 bg-error/10 text-error hover:bg-error hover:text-white rounded-md text-xs font-bold transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+                                            Reject
+                                        </button>
+<button class="h-8 px-3 bg-[#2e7d32]/10 text-[#2e7d32] hover:bg-[#2e7d32] hover:text-white rounded-md text-xs font-bold transition-all flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="check">check</span>
+                                            Approve
+                                        </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="px-6 py-4 bg-surface-container-high/30 border-t border-outline-variant/15 flex items-center justify-between">
+<p class="text-xs text-on-surface-variant font-medium">Showing 4 of 12 pending requests</p>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-surface-dim rounded-md disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-1.5 hover:bg-surface-dim rounded-md">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Bottom Contextual Info (Asymmetric Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8 bg-primary-fixed/30 p-8 rounded-2xl border border-primary-container/20">
+<div class="flex items-start gap-4">
+<div class="p-3 bg-primary text-white rounded-full">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-primary-fixed-variant">AI Integrity Check</h3>
+<p class="text-on-primary-fixed-variant/80 mt-2 leading-relaxed">Our Financial Architect AI has analyzed these 12 requests. 10 requests match employee spending patterns and project codes. 2 requests (Flight to BLR and Software Suite) are flagged for additional review due to budget threshold proximity.</p>
+<button class="mt-4 text-primary font-bold text-sm flex items-center gap-2 hover:underline">
+                                View Full Audit Trace
+                                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 bg-surface-container-highest p-8 rounded-2xl border border-outline-variant/15">
+<h4 class="font-headline font-bold text-on-surface">Team Budget Utilization</h4>
+<div class="mt-6 space-y-4">
+<div>
+<div class="flex justify-between text-xs font-bold uppercase mb-1">
+<span>Travel &amp; Events</span>
+<span>82%</span>
+</div>
+<div class="h-2 w-full bg-surface-dim rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 82%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold uppercase mb-1">
+<span>Software &amp; Subs</span>
+<span>45%</span>
+</div>
+<div class="h-2 w-full bg-surface-dim rounded-full overflow-hidden">
+<div class="h-full bg-primary-container" style="width: 45%"></div>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-4 leading-snug">Budget resets in 14 days. Current approval velocity is stable.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation (Responsive Pivot) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-panel border-t border-outline-variant/10 px-6 py-3 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="text-[10px] font-bold">Expenses</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="rule" style="font-variation-settings: 'FILL' 1;">rule</span>
+<span class="text-[10px] font-bold">Approvals</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</a>
+</nav>
+</body></html>

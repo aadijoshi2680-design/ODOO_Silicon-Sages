@@ -1,0 +1,17 @@
+{
+  "name": "expensepro",
+  "version": "2.0.0",
+  "description": "Enterprise Expense Management System — Financial Architect",
+  "main": "server/server.js",
+  "scripts": {
+    "dev": "node server/server.js",
+    "start": "node server/server.js",
+    "frontend": "npx -y live-server --port=3001 --no-browser"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "nodemailer": "^6.9.15",
+    "pg": "^8.13.0"
+  }
+}
