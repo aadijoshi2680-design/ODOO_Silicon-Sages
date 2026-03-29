@@ -407,13 +407,13 @@ async function handleOcrUpload(event) {
     preview.appendChild(overlay); preview.appendChild(scanLine);
 
     loading.style.display = 'flex';
-    status.textContent = 'Scanning receipt with Gemini Vision...';
+    status.textContent = 'Scanning receipt with AI Vision...';
     badge.classList.add('hidden'); saveBtn.classList.add('hidden'); reasoningDiv.classList.add('hidden');
 
     const ocrPromise = OCRService.scanReceipt(imageBase64);
     await sleep(1300);
     scanLine.remove(); overlay.remove();
-    status.textContent = 'Extracting data with AI...';
+    status.textContent = 'Extracting financial data...';
 
     let ocrData;
     try {
