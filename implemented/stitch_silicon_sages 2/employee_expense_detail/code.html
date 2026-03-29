@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Expense Detail | Financial Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#376479",
+              "surface-tint": "#376479",
+              "secondary-container": "#e1dfdf",
+              "surface-container-high": "#ede8dd",
+              "on-secondary-fixed-variant": "#464747",
+              "on-surface-variant": "#41484c",
+              "surface-container-highest": "#e8e2d7",
+              "outline-variant": "#c1c7cc",
+              "on-primary": "#ffffff",
+              "on-tertiary-container": "#382f20",
+              "background": "#fff9ee",
+              "surface-container-low": "#f9f3e8",
+              "on-surface": "#1d1c15",
+              "outline": "#71787d",
+              "tertiary-fixed": "#f1e0ca",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#231a0d",
+              "on-error-container": "#93000a",
+              "on-primary-fixed": "#001e2b",
+              "inverse-on-surface": "#f6f0e5",
+              "surface": "#fff9ee",
+              "secondary-fixed": "#e4e2e2",
+              "secondary": "#5e5e5e",
+              "tertiary-fixed-dim": "#d4c4af",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#c7c6c6",
+              "error-container": "#ffdad6",
+              "on-primary-container": "#003547",
+              "on-error": "#ffffff",
+              "surface-dim": "#dfd9cf",
+              "surface-bright": "#fff9ee",
+              "on-secondary-container": "#636262",
+              "primary-container": "#729eb5",
+              "error": "#ba1a1a",
+              "primary-fixed": "#c0e8ff",
+              "on-background": "#1d1c15",
+              "surface-variant": "#e8e2d7",
+              "surface-container": "#f3ede2",
+              "on-primary-fixed-variant": "#1c4c60",
+              "inverse-primary": "#a0cde5",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#1b1c1c",
+              "on-tertiary-fixed-variant": "#504535",
+              "inverse-surface": "#333029",
+              "primary-fixed-dim": "#a0cde5",
+              "tertiary-container": "#a49683",
+              "tertiary": "#695d4b"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+      }
+      .primary-gradient {
+        background: linear-gradient(135deg, #376479 0%, #729eb5 100%);
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#f9f3e8] dark:bg-slate-900 flex flex-col h-full py-6 px-4 gap-2 z-50">
+<div class="mb-8 px-2">
+<h1 class="font-manrope text-xl font-extrabold text-[#376479]">ExpensePro</h1>
+<p class="text-xs text-on-surface-variant opacity-70">Enterprise Tier</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#1d1c15] dark:text-slate-400 hover:text-[#376479] hover:bg-[#dfd9cf] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-inter text-sm font-medium">Dashboard</span>
+</a>
+<!-- Active State Logic: Mapping to "My Expenses" -->
+<a class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-slate-800 text-[#376479] font-semibold rounded-lg shadow-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-inter text-sm font-medium">My Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1d1c15] dark:text-slate-400 hover:text-[#376479] hover:bg-[#dfd9cf] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">rule</span>
+<span class="font-inter text-sm font-medium">Team Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1d1c15] dark:text-slate-400 hover:text-[#376479] hover:bg-[#dfd9cf] dark:hover:bg-slate-800 rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-inter text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant/10 pt-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#1d1c15] dark:text-slate-400 hover:text-[#376479] hover:bg-[#dfd9cf] rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-inter text-sm font-medium">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#1d1c15] dark:text-slate-400 hover:text-[#376479] hover:bg-[#dfd9cf] rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-inter text-sm font-medium">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar (Authority Source: JSON) -->
+<header class="sticky top-0 z-40 flex items-center justify-between px-8 h-16 w-full bg-[#fff9ee] dark:bg-slate-950/80 backdrop-blur-md shadow-[0_12px_32px_-4px_rgba(29,28,21,0.06)]">
+<div class="flex items-center gap-4">
+<span class="font-manrope font-bold text-[#376479] dark:text-[#729EB5] tracking-tight">Financial Architect</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-[#376479]">
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#dfd9cf] p-2 rounded-full transition-colors">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-[#dfd9cf] p-2 rounded-full transition-colors">help_outline</span>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden ring-2 ring-primary/20">
+<img alt="User Profile Avatar" data-alt="Professional portrait of a corporate executive in a neutral studio setting with clean lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVVVjduL4iMRzFpFZj8UAC-roqSGN97xQ6zGQ56VFb5Rhcsvx1f-WuYxlG8ZQ_9zHtuss-FO_Wnlvz6uwlGzh0QMJ4R-Yq4fr7ZVnCdCcUycGKzFSLrWpy5dAaf5mk5vR2lqjYi1kjHBBoRRMrggoKTxwQ57hIK1LHtcDujA0OczsXt4CUtN37S7YaXYAUZIxvpGgf9GxIbmzXrQAs47y9E9O_S_7tdMXQuZNdxzpfiGTCTbbm0Jo6-NsZ5pV1DX6mOGvX2lnB-W8"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-14 space-y-10">
+<!-- Breadcrumb & Header -->
+<div class="flex items-center justify-between">
+<div>
+<nav class="flex items-center gap-2 text-sm text-on-surface-variant opacity-60 mb-2">
+<span>Expenses</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>EXP-2025-042</span>
+</nav>
+<h2 class="font-headline text-3xl font-extrabold tracking-tight">Expense Detail</h2>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface font-medium rounded-md hover:bg-surface-dim transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">print</span>
+                        Export PDF
+                    </button>
+<button class="px-6 py-2.5 primary-gradient text-white font-semibold rounded-md shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span>
+                        Save Changes
+                    </button>
+</div>
+</div>
+<!-- Status Tracker -->
+<div class="bg-surface-container-low p-8 rounded-xl">
+<div class="relative flex items-center justify-between max-w-3xl mx-auto">
+<!-- Progress Bar Background -->
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-outline-variant/20 -translate-y-1/2"></div>
+<!-- Active Progress Bar -->
+<div class="absolute top-1/2 left-0 w-2/3 h-0.5 bg-primary -translate-y-1/2"></div>
+<!-- Step 1 -->
+<div class="relative flex flex-col items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="font-manrope text-sm font-bold text-primary">Draft</span>
+</div>
+<!-- Step 2 -->
+<div class="relative flex flex-col items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-sm">pending</span>
+</div>
+<span class="font-manrope text-sm font-bold text-primary">Waiting approval</span>
+</div>
+<!-- Step 3 -->
+<div class="relative flex flex-col items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">verified</span>
+</div>
+<span class="font-manrope text-sm font-medium text-on-surface-variant opacity-60">Approved</span>
+</div>
+</div>
+</div>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Left: Form Fields (8 Columns) -->
+<div class="col-span-8 space-y-8">
+<section class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant/5">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline text-xl font-bold">General Information</h3>
+<button class="flex items-center gap-2 text-primary font-semibold text-sm hover:underline">
+<span class="material-symbols-outlined text-base">attach_file</span>
+                                Attach Receipt
+                            </button>
+</div>
+<div class="grid grid-cols-2 gap-x-10 gap-y-8">
+<div class="space-y-2 col-span-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Description</label>
+<input class="w-full bg-surface-container-low border-transparent rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all px-4 py-3 text-on-surface" type="text" value="Client Dinner - Q3 Strategy Review"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Expense Date</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-transparent rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all px-4 py-3 text-on-surface" type="text" value="Oct 04, 2025"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-50">calendar_today</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Category</label>
+<select class="w-full bg-surface-container-low border-transparent rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all px-4 py-3 text-on-surface appearance-none">
+<option>Meals &amp; Entertainment</option>
+<option>Travel</option>
+<option>Office Supplies</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Paid by</label>
+<select class="w-full bg-surface-container-low border-transparent rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all px-4 py-3 text-on-surface appearance-none">
+<option>Personal Credit Card</option>
+<option>Company Card (Mastercard ...4421)</option>
+<option>Cash</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Amount &amp; Currency</label>
+<div class="flex gap-0">
+<select class="w-24 bg-surface-container-low border-r border-outline-variant/20 rounded-l-md focus:ring-0 focus:bg-white transition-all px-4 py-3 text-on-surface appearance-none">
+<option>EUR</option>
+<option>USD</option>
+<option>GBP</option>
+</select>
+<input class="flex-1 bg-surface-container-low border-transparent rounded-r-md focus:ring-2 focus:ring-primary focus:bg-white transition-all px-4 py-3 text-on-surface" type="text" value="450.00"/>
+</div>
+</div>
+<div class="space-y-2 col-span-2">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Remarks</label>
+<textarea class="w-full bg-surface-container-low border-transparent rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all px-4 py-3 text-on-surface" rows="3">Attended by 4 representatives from the architecture firm and our account lead. Discussed Phase 2 budget allocations.</textarea>
+</div>
+</div>
+</section>
+<!-- Submit Section -->
+<div class="flex justify-end pt-4">
+<button class="group px-12 py-4 primary-gradient text-white font-bold text-lg rounded-xl shadow-xl shadow-primary/30 flex items-center gap-3 hover:scale-105 active:scale-95 transition-all">
+                            Submit Expense
+                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">send</span>
+</button>
+</div>
+</div>
+<!-- Right: Details & Log (4 Columns) -->
+<aside class="col-span-4 space-y-8">
+<!-- Converted Amount Card -->
+<section class="bg-[#376479] text-white p-8 rounded-xl shadow-lg relative overflow-hidden">
+<div class="absolute -right-10 -top-10 h-40 w-40 bg-white/5 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<h4 class="text-primary-fixed text-xs font-bold uppercase tracking-widest mb-6 opacity-80">Total Value</h4>
+<div class="space-y-1 mb-8">
+<p class="text-4xl font-manrope font-extrabold tracking-tight">€450.00</p>
+<p class="text-primary-fixed text-xl font-medium opacity-90">$482.15 USD</p>
+</div>
+<div class="flex items-start gap-3 bg-black/10 p-4 rounded-lg">
+<span class="material-symbols-outlined text-primary-fixed">info</span>
+<p class="text-xs leading-relaxed text-primary-fixed/80">Converted using real-time market rates as of Oct 4, 12:44 PM. Actual reimbursement may vary slightly based on bank processing.</p>
+</div>
+</div>
+</section>
+<!-- Approval Log -->
+<section class="bg-surface-container-highest/50 p-8 rounded-xl border border-outline-variant/10">
+<h3 class="font-headline text-lg font-bold mb-6">Approval Log</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="relative">
+<div class="h-10 w-10 rounded-full overflow-hidden ring-2 ring-white">
+<img alt="Approver Avatar" data-alt="Professional woman with a warm smile, wearing a modern blazer in a minimalist office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC_P5BM5-U5TXoAfa7a3I8PWnFmHPCx7dcE1Sa5pcCkTa3vxVA0tAmrIlS23E1crM9ALp496EIBXUiJLs2ub7FEy0zxuFPfOII4ZyJcdsrar8E8KW3vi09VE0-TAqKRlWcu3gT3jScIQvwIxPjP0kK2WDe5V-rhO5w1BNQdUQ1eDQ3E11K57nwbxqeyTFaYTdOWfghTrYqE77QLj_a6c_irqlYdRzF7iYAPSyS3xocnRoxKNqwg2nY9aXXff6nhcPrlQEWqfYLjCY"/>
+</div>
+<div class="absolute -right-1 -bottom-1 h-5 w-5 bg-primary rounded-full flex items-center justify-center border-2 border-surface">
+<span class="material-symbols-outlined text-[10px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<span class="font-bold text-sm">Sarah Jenkins</span>
+<span class="text-[10px] bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full font-bold uppercase">Approved</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-snug">Budget verified. Aligns with Q3 marketing entertainment allocation.</p>
+<p class="text-[10px] text-on-surface-variant opacity-50 mt-2">12:44 PM • Oct 04, 2025</p>
+</div>
+</div>
+<div class="flex gap-4 opacity-50">
+<div class="h-10 w-10 rounded-full bg-surface-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person_search</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<span class="font-bold text-sm">Finance Dept</span>
+<span class="text-[10px] bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold uppercase">Pending</span>
+</div>
+<p class="text-xs italic">Awaiting final reconciliation...</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Receipt Preview (Glassmorphism) -->
+<section class="relative group cursor-pointer overflow-hidden rounded-xl border border-outline-variant/10">
+<img alt="Expense Receipt Preview" class="w-full h-48 object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Close-up of a paper restaurant receipt with various line items, placed on a light wooden table surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCKaPTChs1KDsjOwcfq6CEosIH0bftxoyiWu7lA0TYsPIMpOccK7zMEGNvTtSKjSdIkOPAahsRMh0EPYek63zkseomHy5vkS8e6javpQGYWXguhDTT2uCYwIKB_2GAoWH1VLSEV_0RCW11IEG7Tx_xp7r7HOYH7XIamkcvoHSh0shyZUO8Zo7hth0a1XvZy0O1WyD5wGSZJHWnKFf08byPfVpsBCdCjQABJ3fK119HSf5lS_FPwDGMh7rjJCaEzq0u8Ff_mqVjjXc"/>
+<div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+<span class="text-white text-xs font-bold mt-2">View Full Receipt</span>
+</div>
+</section>
+</aside>
+</div>
+</div>
+</main>
+</body></html>
